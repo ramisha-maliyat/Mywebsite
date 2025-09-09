@@ -5,7 +5,73 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Ramisha's Homemade Cakes</title>
   <link href="./dist/output.css" rel="stylesheet">
-  <style>html { scroll-behavior: smooth; }</style>
+  <style>
+    /* Smooth scrolling for everything */
+    html {
+      scroll-behavior: smooth;
+    }
+
+    /* Cake item hover effect */
+    .cake-item img {
+      transition: transform 0.3s;
+    }
+    .cake-item:hover img {
+      transform: scale(1.1);
+    }
+
+    /* Modal styling */
+    #modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.7);
+      z-index: 50;
+      justify-content: center;
+      align-items: center;
+    }
+
+    #modal-gallery {
+      display: flex;
+      gap: 1rem;
+      overflow-x: auto;
+      padding: 1rem;
+      scroll-behavior: smooth;
+    }
+
+    #modal-gallery img {
+      flex-shrink: 0;
+      width: 300px;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 1rem;
+    }
+
+    /* Scrollbar styling for gallery */
+    #modal-gallery::-webkit-scrollbar {
+      height: 8px;
+    }
+    #modal-gallery::-webkit-scrollbar-thumb {
+      background: #f472b6; 
+      border-radius: 999px;
+    }
+
+    /* Auto-adjust cart/grid */
+    #cake-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.5rem;
+    }
+
+    /* Cross button */
+    #modal-close {
+      cursor: pointer;
+      font-size: 1.8rem;
+      font-weight: bold;
+      color: white;
+    }
+  </style>
 </head>
 <body class="bg-pink-50 text-gray-800 font-sans">
 
@@ -16,6 +82,7 @@
       <ul class="hidden md:flex space-x-6 font-medium">
         <li><a href="#hero" class="hover:text-pink-500">Home</a></li>
         <li><a href="#cakes" class="hover:text-pink-500">Cakes</a></li>
+        <li><a href="#menu" class="hover:text-pink-500">Menu</a></li>
         <li><a href="#story" class="hover:text-pink-500">Story</a></li>
         <li><a href="#contact" class="hover:text-pink-500">Contact</a></li>
       </ul>
@@ -36,315 +103,434 @@
   <section id="cakes" class="py-20 bg-gradient-to-r from-pink-50 via-purple-50 to-teal-50 text-center">
     <h2 class="text-3xl font-semibold mb-10 text-pink-700">My Cakes</h2>
     <div class="max-w-6xl mx-auto grid gap-8 sm:grid-cols-2 md:grid-cols-3 px-4">
-
+      
       <!-- Car Cake -->
       <div class="cake-item bg-white rounded-xl shadow-lg overflow-hidden cursor-pointer group hover:shadow-xl transition"
-           data-title="Car Theme Cake"
-           data-images="image/car-cake1.jpg,image/car-cake2.jpg,image/car-cake3.jpg">
-           
+           data-title="Car Theme Cake"           data-images="image/car-cake1.jpg,image/car-cake2.jpg,image/car-cake3.jpg">
         <img src="image/car-cake1.jpg" class="w-full h-56 object-cover group-hover:scale-110 transition duration-300">
         <div class="p-4 bg-pink-50">
           <h3 class="text-lg font-bold text-pink-700">Car Theme Cake</h3>
         </div>
       </div>
 
-      <!-- 3Doll Cake -->
-      <div class="cake-item bg-white rounded-xl shadow-lg overflow-hidden cursor-pointer group hover:shadow-xl transition"
-           data-title="3Doll Cake"
-           data-images="image/3doll1.jpg,image/3doll2.heic,image/3doll3.jpg"
-           data-video="image/3doll.MOV">
-        <img src="image/3doll1.jpg" class="w-full h-56 object-cover group-hover:scale-110 transition duration-300">
-        <div class="p-4 bg-purple-50">
-          <h3 class="text-lg font-bold text-purple-700">Doll Cake</h3>
-        </div>
-      </div>
+      <!-- Roundd Cake -->
+<div class="cake-item bg-white rounded-xl shadow-lg overflow-hidden cursor-pointer group hover:shadow-xl transition"
+     data-title="Silver Forest Cake"
+     data-images="image/roundd1.jpg,image/roundd2.jpg,image/roundd3.jpg,image/roundd4.jpg"
+     data-video="image/roundd.mp4">
 
-      <!-- 2Doll Cake -->
-      <div class="cake-item bg-white rounded-xl shadow-lg overflow-hidden cursor-pointer group hover:shadow-xl transition"
-           data-title="2Doll Cake"
-           data-images="image/2doll1.jpg,image/2doll2.jpg,image/2doll3.jpg,image/2doll4.jpg"
-           data-video="image/2doll.MOV">
-        <img src="image/2doll1.jpg" class="w-full h-56 object-cover group-hover:scale-110 transition duration-300">
-        <div class="p-4 bg-purple-50">
-          <h3 class="text-lg font-bold text-purple-700">Doll Cake</h3>
-        </div>
-      </div>
+  <img src="image/roundd1.jpg" class="cake-img w-full h-56 object-cover group-hover:scale-110 transition duration-300">
 
-            <!-- 3Doll Cake -->
-      <div class="cake-item bg-white rounded-xl shadow-lg overflow-hidden cursor-pointer group hover:shadow-xl transition"
-           data-title="1Doll Cake"
-           data-images="image/1doll1.jpg"
-           data-video="image/1doll.MOV">
-        <img src="image/1doll1.jpg" class="w-full h-56 object-cover group-hover:scale-110 transition duration-300">
-        <div class="p-4 bg-purple-50">
-          <h3 class="text-lg font-bold text-purple-700">Doll Cake</h3>
-        </div>
-      </div>
+  <video class="cake-video w-full h-56 object-cover" muted loop preload="metadata">
+    <source src="image/roundd.mp4" type="video/mp4">
+  </video>
 
-      <!-- Football Cake -->
-      <div class="cake-item bg-white rounded-xl shadow-lg overflow-hidden cursor-pointer group hover:shadow-xl transition"
-           data-title="Football Theme Cake"
-           data-images="image/football1.jpg,image/football2.jpg,image/football3.jpg"
-           data-video="image/football.MOV">
-        <img src="image/football1.jpg" class="w-full h-56 object-cover group-hover:scale-110 transition duration-300">
-        <div class="p-4 bg-yellow-50">
-          <h3 class="text-lg font-bold text-yellow-700">Football Cake</h3>
-        </div>
-      </div>
+  <div class="p-4 bg-pink-50">
+    <h3 class="text-lg font-bold text-pink-700">Silver Forest Cake</h3>
+  </div>
+</div>
 
-      <!-- Red Velvet Cake -->
-      <div class="cake-item bg-white rounded-xl shadow-lg overflow-hidden cursor-pointer group hover:shadow-xl transition"
-           data-title="Red Velvet Cake"
-           data-images="image/red-velvet1.jpg,image/red-velvet2.jpg,image/red-velvet3.jpg,image/red-velvet4.jpg"
-           data-video="image/red-velvet.MOV">
-        <img src="image/red-velvet1.jpg" class="w-full h-56 object-cover group-hover:scale-110 transition duration-300">
-        <div class="p-4 bg-pink-50">
-          <h3 class="text-lg font-bold text-pink-700">Red Velvet Cake</h3>
-        </div>
-      </div>
 
-      <!-- Dark Chocolate Cake -->
-      <div class="cake-item bg-white rounded-xl shadow-lg overflow-hidden cursor-pointer group hover:shadow-xl transition"
-           data-title="Dark Chocolate Cake"
-           data-images="image/dark-chocolate1.jpg,image/dark-chocolate2.jpg">
-         
-        <img src="image/dark-chocolate1.jpg" class="w-full h-56 object-cover group-hover:scale-110 transition duration-300">
-        <div class="p-4 bg-yellow-50">
-          <h3 class="text-lg font-bold text-yellow-700">Dark Chocolate Cake</h3>
-        </div>
-      </div>
+<!-- 3Doll Cake -->
+<div class="cake-item bg-white rounded-xl shadow-lg overflow-hidden cursor-pointer group hover:shadow-xl transition"
+     data-title="3Doll Cake"
+     data-images="image/3doll2.jpg,image/3doll1.jpg,image/3doll3.jpg"
+     data-video="image/3doll.MOV">
+  <img src="image/3doll1.jpg" class="cake-img w-full h-56 object-cover group-hover:hidden transition duration-300">
+  <video class="cake-video w-full h-56 object-cover hidden group-hover:block" muted loop preload="metadata">
+    <source src="image/3doll.MOV" type="video/mp4">
+  </video>
+  <div class="p-4 bg-purple-50">
+    <h3 class="text-lg font-bold text-purple-700">Doll Cake</h3>
+  </div>
+</div>
 
-      <!-- Minion Cake -->
-      <div class="cake-item bg-white rounded-xl shadow-lg overflow-hidden cursor-pointer group hover:shadow-xl transition"
-           data-title="Minion Cake"
-           data-images="image/minion1.jpg,image/minion2.jpg"
-           data-video="image/minion.mov">
-        <img src="image/minion1.jpg" class="w-full h-56 object-cover group-hover:scale-110 transition duration-300">
-        <div class="p-4 bg-purple-50">
-          <h3 class="text-lg font-bold text-purple-700">Minion Cake</h3>
-        </div>
-      </div>
+<!-- 2Doll Cake -->
+<div class="cake-item bg-white rounded-xl shadow-lg overflow-hidden cursor-pointer group hover:shadow-xl transition"
+     data-title="2Doll Cake"
+     data-images="image/2doll1.jpg,image/2doll2.jpg,image/2doll3.jpg,image/2doll4.jpg"
+     data-video="image/2doll.MOV">
+  <img src="image/2doll1.jpg" class="cake-img w-full h-56 object-cover group-hover:hidden transition duration-300">
+  <video class="cake-video w-full h-56 object-cover hidden group-hover:block" muted loop preload="metadata">
+    <source src="image/2doll.MOV" type="video/mp4">
+  </video>
+  <div class="p-4 bg-purple-50">
+    <h3 class="text-lg font-bold text-purple-700">Doll Cake</h3>
+  </div>
+</div>
 
-      <!-- 3-Tier Cake -->
-      <div class="cake-item bg-white rounded-xl shadow-lg overflow-hidden cursor-pointer group hover:shadow-xl transition"
-           data-title="3-Tier Cake"
-           data-images="image/3tier1.jpg,image/3tier3.jpg,image/3tier4.jpg"
-           data-video="image/3tier.MOV">
-        <img src="image/3tier1.jpg" class="w-full h-56 object-cover group-hover:scale-110 transition duration-300">
-        <div class="p-4 bg-pink-50">
-          <h3 class="text-lg font-bold text-pink-700">3-Tier Cake</h3>
-        </div>
-      </div>
+<!-- 1Doll Cake -->
+<div class="cake-item bg-white rounded-xl shadow-lg overflow-hidden cursor-pointer group hover:shadow-xl transition"
+     data-title="1Doll Cake"
+     data-images="image/1doll1.jpg"
+     data-video="image/1doll.MOV">
+  <img src="image/1doll1.jpg" class="cake-img w-full h-56 object-cover group-hover:hidden transition duration-300">
+  <video class="cake-video w-full h-56 object-cover hidden group-hover:block" muted loop preload="metadata">
+    <source src="image/1doll.MOV" type="video/mp4">
+  </video>
+  <div class="p-4 bg-purple-50">
+    <h3 class="text-lg font-bold text-purple-700">Doll Cake</h3>
+  </div>
+</div>
 
-      <!-- Heart Shape Cake -->
-      <div class="cake-item bg-white rounded-xl shadow-lg overflow-hidden cursor-pointer group hover:shadow-xl transition"
-           data-title="Heart Shape Cake"
-           data-images="image/heart1.jpg,image/heart2.jpg,image/heart3.jpg"
-           data-video="image/heart.MOV">
-        <img src="image/heart1.jpg" class="w-full h-56 object-cover group-hover:scale-110 transition duration-300">
-        <div class="p-4 bg-purple-50">
-          <h3 class="text-lg font-bold text-purple-700">Heart Shape Cake</h3>
-        </div>
-      </div>
+<!-- Football Cake -->
+<div class="cake-item bg-white rounded-xl shadow-lg overflow-hidden cursor-pointer group hover:shadow-xl transition"
+     data-title="Football Theme Cake"
+     data-images="image/football1.jpg,image/football2.jpg,image/football3.jpg"
+     data-video="image/football.MOV">
+  <img src="image/football1.jpg" class="cake-img w-full h-56 object-cover group-hover:hidden transition duration-300">
+  <video class="cake-video w-full h-56 object-cover hidden group-hover:block" muted loop preload="metadata">
+    <source src="image/football.MOV" type="video/mp4">
+  </video>
+  <div class="p-4 bg-yellow-50">
+    <h3 class="text-lg font-bold text-yellow-700">Football Cake</h3>
+  </div>
+</div>
 
-            <!-- Heart Shape Cake2 -->
-      <div class="cake-item bg-white rounded-xl shadow-lg overflow-hidden cursor-pointer group hover:shadow-xl transition"
-           data-title="Heart Shape Cake"
-           data-images="image/heart1.1.jpg,image/heart2.1.jpg,image/heart3.1.jpg"
-           data-video="image/heart2.MOV">
-        <img src="image/heart1.1.jpg" class="w-full h-56 object-cover group-hover:scale-110 transition duration-300">
-        <div class="p-4 bg-purple-50">
-          <h3 class="text-lg font-bold text-purple-700">Heart Shape Cake</h3>
-        </div>
-      </div>
+<!-- Red Velvet Cake -->
+<div class="cake-item bg-white rounded-xl shadow-lg overflow-hidden cursor-pointer group hover:shadow-xl transition"
+     data-title="Red Velvet Cake"
+     data-images="image/red-velvet1.jpg,image/red-velvet2.jpg,image/red-velvet3.jpg,image/red-velvet4.jpg"
+     data-video="image/red-velvet.MOV">
+  <img src="image/red-velvet1.jpg" class="cake-img w-full h-56 object-cover group-hover:hidden transition duration-300">
+  <video class="cake-video w-full h-56 object-cover hidden group-hover:block" muted loop preload="metadata">
+    <source src="image/red-velvet.MOV" type="video/mp4">
+  </video>
+  <div class="p-4 bg-pink-50">
+    <h3 class="text-lg font-bold text-pink-700">Red Velvet Cake</h3>
+  </div>
+</div>
 
-      <!-- Individual 9 Round Cakes -->
-      <!-- Round Cake 1 -->
-      <div class="cake-item bg-white rounded-xl shadow-lg overflow-hidden cursor-pointer group hover:shadow-xl transition"
-           data-title="Round Cake 1"
-           data-images="image/round1-1.jpg,image/round1-2.jpg,image/round1-3.jpg"
-           data-video="image/round1.MOV">
-        <img src="image/round1-1.jpg" class="w-full h-56 object-cover group-hover:scale-110 transition duration-300">
-        <div class="p-4 bg-yellow-50">
-          <h3 class="text-lg font-bold text-yellow-700">Round Cake 1</h3>
-        </div>
-      </div>
+<!-- Dark Chocolate Cake -->
+<div class="cake-item bg-white rounded-xl shadow-lg overflow-hidden cursor-pointer group hover:shadow-xl transition"
+     data-title="Dark Chocolate Cake"
+     data-images="image/dark-chocolate1.jpg,image/dark-chocolate2.jpg">
+  <img src="image/dark-chocolate1.jpg" class="cake-img w-full h-56 object-cover group-hover:hidden transition duration-300">
+  <video class="cake-video w-full h-56 object-cover hidden group-hover:block" muted loop preload="metadata">
+    <source src="image/dark-chocolate.MOV" type="video/mp4">
+  </video>
+  <div class="p-4 bg-yellow-50">
+    <h3 class="text-lg font-bold text-yellow-700">Dark Chocolate Cake</h3>
+  </div>
+</div>
 
-      <!-- Round Cake 2 -->
-      <div class="cake-item bg-white rounded-xl shadow-lg overflow-hidden cursor-pointer group hover:shadow-xl transition"
-           data-title="Round Cake 2"
-           data-images="image/round2-1.jpg,image/round2-2.jpg,image/round2-3.jpg"
-           data-video="image/round2.MOV">
-        <img src="image/round2-1.jpg" class="w-full h-56 object-cover group-hover:scale-110 transition duration-300">
-        <div class="p-4 bg-yellow-50">
-          <h3 class="text-lg font-bold text-yellow-700">Round Cake 2</h3>
-        </div>
-      </div>
+<!-- Minion Cake -->
+<div class="cake-item bg-white rounded-xl shadow-lg overflow-hidden cursor-pointer group hover:shadow-xl transition"
+     data-title="Minion Cake"
+     data-images="image/minion1.jpg,image/minion2.jpg"
+     data-video="image/minion.mov">
+  <img src="image/minion1.jpg" class="cake-img w-full h-56 object-cover group-hover:hidden transition duration-300">
+  <video class="cake-video w-full h-56 object-cover hidden group-hover:block" muted loop preload="metadata">
+    <source src="image/minion.mov" type="video/mp4">
+  </video>
+  <div class="p-4 bg-purple-50">
+    <h3 class="text-lg font-bold text-purple-700">Minion Cake</h3>
+  </div>
+</div>
 
-      <!-- Round Cake 3 -->
-      <div class="cake-item bg-white rounded-xl shadow-lg overflow-hidden cursor-pointer group hover:shadow-xl transition"
-           data-title="Round Cake 3"
-           data-images="image/round3-1.jpg,image/round3-2.jpg,image/round3-3.jpg"
-           data-video="image/round3.MOV">
-        <img src="image/round3-1.jpg" class="w-full h-56 object-cover group-hover:scale-110 transition duration-300">
-        <div class="p-4 bg-yellow-50">
-          <h3 class="text-lg font-bold text-yellow-700">Round Cake 3</h3>
-        </div>
-      </div>
+<!-- 3-Tier Cake -->
+<div class="cake-item bg-white rounded-xl shadow-lg overflow-hidden cursor-pointer group hover:shadow-xl transition"
+     data-title="3-Tier Cake"
+     data-images="image/3tier1.jpg,image/3tier3.jpg,image/3tier4.jpg"
+     data-video="image/3tier.MOV">
+  <img src="image/3tier1.jpg" class="cake-img w-full h-56 object-cover group-hover:hidden transition duration-300">
+  <video class="cake-video w-full h-56 object-cover hidden group-hover:block" muted loop preload="metadata">
+    <source src="image/3tier.MOV" type="video/mp4">
+  </video>
+  <div class="p-4 bg-pink-50">
+    <h3 class="text-lg font-bold text-pink-700">3-Tier Cake</h3>
+  </div>
+</div>
 
-      <!-- Round Cake 4 -->
-      <div class="cake-item bg-white rounded-xl shadow-lg overflow-hidden cursor-pointer group hover:shadow-xl transition"
-           data-title="Round Cake 4"
-           data-images="image/round4-1.jpg,image/round4-2.jpg,image/round4-3.jpg"
-           data-video="image/round4.MOV">
-        <img src="image/round4-1.jpg" class="w-full h-56 object-cover group-hover:scale-110 transition duration-300">
-        <div class="p-4 bg-yellow-50">
-          <h3 class="text-lg font-bold text-yellow-700">Round Cake 4</h3>
-        </div>
-      </div>
+<!-- Heart Shape Cake -->
+<div class="cake-item bg-white rounded-xl shadow-lg overflow-hidden cursor-pointer group hover:shadow-xl transition"
+     data-title="Heart Shape Cake"
+     data-images="image/heart1.jpg,image/heart2.jpg,image/heart3.jpg"
+     data-video="image/heart.MOV">
+  <img src="image/heart1.jpg" class="cake-img w-full h-56 object-cover group-hover:hidden transition duration-300">
+  <video class="cake-video w-full h-56 object-cover hidden group-hover:block" muted loop preload="metadata">
+    <source src="image/heart.MOV" type="video/mp4">
+  </video>
+  <div class="p-4 bg-purple-50">
+    <h3 class="text-lg font-bold text-purple-700">Heart Shape Cake</h3>
+  </div>
+</div>
 
-      <!-- Round Cake 5 -->
-      <div class="cake-item bg-white rounded-xl shadow-lg overflow-hidden cursor-pointer group hover:shadow-xl transition"
-           data-title="Round Cake 5"
-           data-images="image/round5-1.jpg,image/round5-2.jpg,image/round5-3.jpg"
-           data-video="image/round5.mp4">
-        <img src="image/round5-1.jpg" class="w-full h-56 object-cover group-hover:scale-110 transition duration-300">
-        <div class="p-4 bg-yellow-50">
-          <h3 class="text-lg font-bold text-yellow-700">Round Cake 5</h3>
-        </div>
-      </div>
+<!-- Heart Shape Cake2 -->
+<div class="cake-item bg-white rounded-xl shadow-lg overflow-hidden cursor-pointer group hover:shadow-xl transition"
+     data-title="Heart Shape Cake"
+     data-images="image/heart1.1.jpg,image/heart2.1.jpg,image/heart3.1.jpg"
+     data-video="image/heart2.MOV">
+  <img src="image/heart1.1.jpg" class="cake-img w-full h-56 object-cover group-hover:hidden transition duration-300">
+  <video class="cake-video w-full h-56 object-cover hidden group-hover:block" muted loop preload="metadata">
+    <source src="image/heart2.MOV" type="video/mp4">
+  </video>
+  <div class="p-4 bg-purple-50">
+    <h3 class="text-lg font-bold text-purple-700">Heart Shape Cake</h3>
+  </div>
+</div>
 
-      <!-- Round Cake 6 -->
-      <div class="cake-item bg-white rounded-xl shadow-lg overflow-hidden cursor-pointer group hover:shadow-xl transition"
-           data-title="Round Cake 6"
-           data-images="image/round6-1.jpg,image/round6-2.jpg,image/round6-3.jpg"
-           data-video="image/round6.mp4">
-        <img src="image/round6-1.jpg" class="w-full h-56 object-cover group-hover:scale-110 transition duration-300">
-        <div class="p-4 bg-yellow-50">
-          <h3 class="text-lg font-bold text-yellow-700">Round Cake 6</h3>
-        </div>
-      </div>
+<!-- Round Cake 1 -->
+<div class="cake-item bg-white rounded-xl shadow-lg overflow-hidden cursor-pointer group hover:shadow-xl transition"
+     data-title="Round Cake 1"
+     data-images="image/round1-1.jpg,image/round1-2.jpg,image/round1-3.jpg"
+     data-video="image/round1.MOV">
+  <img src="image/round1-1.jpg" class="cake-img w-full h-56 object-cover group-hover:hidden transition duration-300">
+  <video class="cake-video w-full h-56 object-cover hidden group-hover:block" muted loop preload="metadata">
+    <source src="image/round1.MOV" type="video/mp4">
+  </video>
+  <div class="p-4 bg-yellow-50">
+    <h3 class="text-lg font-bold text-yellow-700">Round Cake 1</h3>
+  </div>
+</div>
 
-      <!-- Round Cake 7 -->
-      <div class="cake-item bg-white rounded-xl shadow-lg overflow-hidden cursor-pointer group hover:shadow-xl transition"
-           data-title="Round Cake 7"
-           data-images="image/round7-1.jpg,image/round7-2.jpg,image/round7-3.jpg"
-           data-video="image/round7.mp4">
-        <img src="image/round7-1.jpg" class="w-full h-56 object-cover group-hover:scale-110 transition duration-300">
-        <div class="p-4 bg-yellow-50">
-          <h3 class="text-lg font-bold text-yellow-700">Round Cake 7</h3>
-        </div>
-      </div>
+<!-- Round Cake 2 -->
+<div class="cake-item bg-white rounded-xl shadow-lg overflow-hidden cursor-pointer group hover:shadow-xl transition"
+     data-title="Round Cake 2"
+     data-images="image/round2-1.jpg,image/round2-2.jpg,image/round2-3.jpg"
+     data-video="image/round2.MOV">
+  <img src="image/round2-1.jpg" class="cake-img w-full h-56 object-cover group-hover:hidden transition duration-300">
+  <video class="cake-video w-full h-56 object-cover hidden group-hover:block" muted loop preload="metadata">
+    <source src="image/round2.MOV" type="video/mp4">
+  </video>
+  <div class="p-4 bg-yellow-50">
+    <h3 class="text-lg font-bold text-yellow-700">Round Cake 2</h3>
+  </div>
+</div>
 
-      <!-- Round Cake 8 -->
-      <div class="cake-item bg-white rounded-xl shadow-lg overflow-hidden cursor-pointer group hover:shadow-xl transition"
-           data-title="Round Cake 8"
-           data-images="image/round8-1.jpg,image/round8-2.jpg,image/round8-3.jpg"
-           data-video="image/round8.mp4">
-        <img src="image/round8-1.jpg" class="w-full h-56 object-cover group-hover:scale-110 transition duration-300">
-        <div class="p-4 bg-yellow-50">
-          <h3 class="text-lg font-bold text-yellow-700">Round Cake 8</h3>
-        </div>
-      </div>
+    <!-- Round Cake 3 -->
+<div class="cake-item bg-white rounded-xl shadow-lg overflow-hidden cursor-pointer group hover:shadow-xl transition"
+     data-title="Round Cake 3"
+     data-images="image/round3-1.jpg,image/round3-2.jpg,image/round3-3.jpg"
+     data-video="image/round3.MOV">
+  <img src="image/round3-1.jpg" class="cake-img w-full h-56 object-cover group-hover:hidden transition duration-300">
+  <video class="cake-video w-full h-56 object-cover hidden group-hover:block" muted loop preload="metadata">
+    <source src="image/round3.MOV" type="video/mp4">
+  </video>
+  <div class="p-4 bg-yellow-50">
+    <h3 class="text-lg font-bold text-yellow-700">Round Cake 3</h3>
+  </div>
+</div>
 
-      <!-- Round Cake 9 -->
-      <div class="cake-item bg-white rounded-xl shadow-lg overflow-hidden cursor-pointer group hover:shadow-xl transition"
-           data-title="Round Cake 9"
-           data-images="image/round9-1.jpg,image/round9-2.jpg,image/round9-3.jpg"
-           data-video="image/round9.mp4">
-        <img src="image/round9-1.jpg" class="w-full h-56 object-cover group-hover:scale-110 transition duration-300">
-        <div class="p-4 bg-yellow-50">
-          <h3 class="text-lg font-bold text-yellow-700">Round Cake 9</h3>
-        </div>
-      </div>
+<!-- Round Cake 4 -->
+<div class="cake-item bg-white rounded-xl shadow-lg overflow-hidden cursor-pointer group hover:shadow-xl transition"
+     data-title="Round Cake 4"
+     data-images="image/round4-1.jpg,image/round4-2.jpg,image/round4-3.jpg"
+     data-video="image/round4.MOV">
+  <img src="image/round4-1.jpg" class="cake-img w-full h-56 object-cover group-hover:hidden transition duration-300">
+  <video class="cake-video w-full h-56 object-cover hidden group-hover:block" muted loop preload="metadata">
+    <source src="image/round4.MOV" type="video/mp4">
+  </video>
+  <div class="p-4 bg-yellow-50">
+    <h3 class="text-lg font-bold text-yellow-700">Round Cake 4</h3>
+  </div>
+</div>
 
-            <!-- Round Cake 10 -->
-      <div class="cake-item bg-white rounded-xl shadow-lg overflow-hidden cursor-pointer group hover:shadow-xl transition"
-           data-title="Round Cake 10"
-           data-images="image/round10-1.jpg,image/round10-2.jpg,image/round10-3.jpg"
-           data-video="image/round10.mp4">
-        <img src="image/round10-1.jpg" class="w-full h-56 object-cover group-hover:scale-110 transition duration-300">
-        <div class="p-4 bg-yellow-50">
-          <h3 class="text-lg font-bold text-yellow-700">Round Cake 10</h3>
-        </div>
-      </div>
+<!-- Round Cake 5 -->
+<div class="cake-item bg-white rounded-xl shadow-lg overflow-hidden cursor-pointer group hover:shadow-xl transition"
+     data-title="Round Cake 5"
+     data-images="image/round5-1.jpg,image/round5-2.jpg,image/round5-3.jpg"
+     data-video="image/round5.mp4">
+  <img src="image/round5-1.jpg" class="cake-img w-full h-56 object-cover group-hover:hidden transition duration-300">
+  <video class="cake-video w-full h-56 object-cover hidden group-hover:block" muted loop preload="metadata">
+    <source src="image/round5.mp4" type="video/mp4">
+  </video>
+  <div class="p-4 bg-yellow-50">
+    <h3 class="text-lg font-bold text-yellow-700">Round Cake 5</h3>
+  </div>
+</div>
 
-      <!-- Purple Velvet Cake -->
-      <div class="cake-item bg-white rounded-xl shadow-lg overflow-hidden cursor-pointer group hover:shadow-xl transition"
-           data-title="Purple Velvet Cake"
-           data-images="image/purple-velvet1.jpg,image/purple-velvet2.jpg,image/purple-velvet3.jpg,image/purple-velvet4.jpg"
-           data-video="image/purple-velvet.MOV">
-        <img src="image/purple-velvet1.jpg" class="w-full h-56 object-cover group-hover:scale-110 transition duration-300">
-        <div class="p-4 bg-pink-50">
-          <h3 class="text-lg font-bold text-pink-700">Purple Velvet Cake</h3>
-        </div>
-      </div>
+<!-- Round Cake 6 -->
+<div class="cake-item bg-white rounded-xl shadow-lg overflow-hidden cursor-pointer group hover:shadow-xl transition"
+     data-title="Round Cake 6"
+     data-images="image/round6-1.jpg,image/round6-2.jpg,image/round6-3.jpg"
+     data-video="image/round6.mp4">
+  <img src="image/round6-1.jpg" class="cake-img w-full h-56 object-cover group-hover:hidden transition duration-300">
+  <video class="cake-video w-full h-56 object-cover hidden group-hover:block" muted loop preload="metadata">
+    <source src="image/round6.mp4" type="video/mp4">
+  </video>
+  <div class="p-4 bg-yellow-50">
+    <h3 class="text-lg font-bold text-yellow-700">Round Cake 6</h3>
+  </div>
+</div>
 
-            <!-- Sunflower Cake -->
-      <div class="cake-item bg-white rounded-xl shadow-lg overflow-hidden cursor-pointer group hover:shadow-xl transition"
-           data-title="Sunflower Cake"
-           data-images="image/sunflower1.jpg,image/sunflower2.jpg"
-           data-video="image/sunflower.MOV">
-        <img src="image/sunflower1.jpg" class="w-full h-56 object-cover group-hover:scale-110 transition duration-300">
-        <div class="p-4 bg-purple-50">
-          <h3 class="text-lg font-bold text-purple-700">Sunflower Cake</h3>
-        </div>
-      </div>
+<!-- Round Cake 7 -->
+<div class="cake-item bg-white rounded-xl shadow-lg overflow-hidden cursor-pointer group hover:shadow-xl transition"
+     data-title="Round Cake 7"
+     data-images="image/round7-1.jpg,image/round7-2.jpg,image/round7-3.jpg"
+     data-video="image/round7.mp4">
+  <img src="image/round7-1.jpg" class="cake-img w-full h-56 object-cover group-hover:hidden transition duration-300">
+  <video class="cake-video w-full h-56 object-cover hidden group-hover:block" muted loop preload="metadata">
+    <source src="image/round7.mp4" type="video/mp4">
+  </video>
+  <div class="p-4 bg-yellow-50">
+    <h3 class="text-lg font-bold text-yellow-700">Round Cake 7</h3>
+  </div>
+</div>
 
-            <!-- NumberShaped Cake -->
-      <div class="cake-item bg-white rounded-xl shadow-lg overflow-hidden cursor-pointer group hover:shadow-xl transition"
-           data-title="NumberShaped Cake"
-           data-images="image/number1.jpg,image/number2.jpg,image/number3.jpg"
-           data-video="image/number.MOV">
-        <img src="image/number1.jpg" class="w-full h-56 object-cover group-hover:scale-110 transition duration-300">
-        <div class="p-4 bg-purple-50">
-          <h3 class="text-lg font-bold text-purple-700">NumberShaped Cake</h3>
-        </div>
-      </div>
+<!-- Round Cake 8 -->
+<div class="cake-item bg-white rounded-xl shadow-lg overflow-hidden cursor-pointer group hover:shadow-xl transition"
+     data-title="Round Cake 8"
+     data-images="image/round8-1.jpg,image/round8-2.jpg,image/round8-3.jpg"
+     data-video="image/round8.mp4">
+  <img src="image/round8-1.jpg" class="cake-img w-full h-56 object-cover group-hover:hidden transition duration-300">
+  <video class="cake-video w-full h-56 object-cover hidden group-hover:block" muted loop preload="metadata">
+    <source src="image/round8.mp4" type="video/mp4">
+  </video>
+  <div class="p-4 bg-yellow-50">
+    <h3 class="text-lg font-bold text-yellow-700">Round Cake 8</h3>
+  </div>
+</div>
 
-      <!-- Cupcakes -->
-      <div class="cake-item bg-white rounded-xl shadow-lg overflow-hidden cursor-pointer group hover:shadow-xl transition"
-           data-title="Cupcakes"
-           data-images="image/cupcake1.jpg,image/cupcake2.jpg,image/cupcake3.jpg"
-           data-video="image/cupcake.MOV">
-        <img src="image/cupcake1.jpg" class="w-full h-56 object-cover group-hover:scale-110 transition duration-300">
-        <div class="p-4 bg-purple-50">
-          <h3 class="text-lg font-bold text-purple-700">Cupcakes</h3>
-        </div>
-      </div>
+<!-- Round Cake 9 -->
+<div class="cake-item bg-white rounded-xl shadow-lg overflow-hidden cursor-pointer group hover:shadow-xl transition"
+     data-title="Round Cake 9"
+     data-images="image/round9-1.jpg,image/round9-2.jpg,image/round9-3.jpg"
+     data-video="image/round9.mp4">
+  <img src="image/round9-1.jpg" class="cake-img w-full h-56 object-cover group-hover:hidden transition duration-300">
+  <video class="cake-video w-full h-56 object-cover hidden group-hover:block" muted loop preload="metadata">
+    <source src="image/round9.mp4" type="video/mp4">
+  </video>
+  <div class="p-4 bg-yellow-50">
+    <h3 class="text-lg font-bold text-yellow-700">Round Cake 9</h3>
+  </div>
+</div>
 
-            <!-- Flower Cake -->
-      <div class="cake-item bg-white rounded-xl shadow-lg overflow-hidden cursor-pointer group hover:shadow-xl transition"
-           data-title="Flower Cake"
-           data-images="image/flower1.jpg,image/flower2.jpg,image/flower3.jpg"
-           data-video="image/flower.MOV">
-        <img src="image/flower1.jpg" class="w-full h-56 object-cover group-hover:scale-110 transition duration-300">
-        <div class="p-4 bg-purple-50">
-          <h3 class="text-lg font-bold text-purple-700">Flower Cake</h3>
-        </div>
-      </div>
+<!-- Round Cake 10 -->
+<div class="cake-item bg-white rounded-xl shadow-lg overflow-hidden cursor-pointer group hover:shadow-xl transition"
+     data-title="Round Cake 10"
+     data-images="image/round10-1.jpg,image/round10-2.jpg,image/round10-3.jpg"
+     data-video="image/round10.mp4">
+  <img src="image/round10-1.jpg" class="cake-img w-full h-56 object-cover group-hover:hidden transition duration-300">
+  <video class="cake-video w-full h-56 object-cover hidden group-hover:block" muted loop preload="metadata">
+    <source src="image/round10.mp4" type="video/mp4">
+  </video>
+  <div class="p-4 bg-yellow-50">
+    <h3 class="text-lg font-bold text-yellow-700">Round Cake 10</h3>
+  </div>
+</div>
 
-      <!-- Flower Tub Cake -->
-      <div class="cake-item bg-white rounded-xl shadow-lg overflow-hidden cursor-pointer group hover:shadow-xl transition"
-           data-title="Flower Tub Cake"
-           data-images="image/flower-tub1.jpg,image/flower-tub2.jpg,image/flower-tub3.jpg,image/flower-tub4.jpg"
-           data-video="image/flower-tub.MOV">
-        <img src="image/flower-tub1.jpg" class="w-full h-56 object-cover group-hover:scale-110 transition duration-300">
-        <div class="p-4 bg-pink-50">
-          <h3 class="text-lg font-bold text-pink-700">Flower Tub Cake</h3>
-        </div>
-      </div>
+<!-- Purple Velvet Cake -->
+<div class="cake-item bg-white rounded-xl shadow-lg overflow-hidden cursor-pointer group hover:shadow-xl transition"
+     data-title="Purple Velvet Cake"
+     data-images="image/purple-velvet1.jpg,image/purple-velvet2.jpg,image/purple-velvet3.jpg,image/purple-velvet4.jpg"
+     data-video="image/purple-velvet.MOV">
+  <img src="image/purple-velvet1.jpg" class="cake-img w-full h-56 object-cover group-hover:hidden transition duration-300">
+  <video class="cake-video w-full h-56 object-cover hidden group-hover:block" muted loop preload="metadata">
+    <source src="image/purple-velvet.MOV" type="video/mp4">
+  </video>
+  <div class="p-4 bg-pink-50">
+    <h3 class="text-lg font-bold text-pink-700">Purple Velvet Cake</h3>
+  </div>
+</div>
 
+<!-- Sunflower Cake -->
+<div class="cake-item bg-white rounded-xl shadow-lg overflow-hidden cursor-pointer group hover:shadow-xl transition"
+     data-title="Sunflower Cake"
+     data-images="image/sunflower1.jpg,image/sunflower2.jpg"
+     data-video="image/sunflower.MOV">
+  <img src="image/sunflower1.jpg" class="cake-img w-full h-56 object-cover group-hover:hidden transition duration-300">
+  <video class="cake-video w-full h-56 object-cover hidden group-hover:block" muted loop preload="metadata">
+    <source src="image/sunflower.MOV" type="video/mp4">
+  </video>
+  <div class="p-4 bg-purple-50">
+    <h3 class="text-lg font-bold text-purple-700">Sunflower Cake</h3>
+  </div>
+</div>
+
+<!-- NumberShaped Cake -->
+<div class="cake-item bg-white rounded-xl shadow-lg overflow-hidden cursor-pointer group hover:shadow-xl transition"
+     data-title="NumberShaped Cake"
+     data-images="image/number1.jpg,image/number2.jpg,image/number3.jpg"
+     data-video="image/number.MOV">
+  <img src="image/number1.jpg" class="cake-img w-full h-56 object-cover group-hover:hidden transition duration-300">
+  <video class="cake-video w-full h-56 object-cover hidden group-hover:block" muted loop preload="metadata">
+    <source src="image/number.MOV" type="video/mp4">
+  </video>
+  <div class="p-4 bg-purple-50">
+    <h3 class="text-lg font-bold text-purple-700">NumberShaped Cake</h3>
+  </div>
+</div>
+
+<!-- Cupcakes -->
+<div class="cake-item bg-white rounded-xl shadow-lg overflow-hidden cursor-pointer group hover:shadow-xl transition"
+     data-title="Cupcakes"
+     data-images="image/cupcake1.jpg,image/cupcake2.jpg,image/cupcake3.jpg"
+     data-video="image/cupcake.MOV">
+  <img src="image/cupcake1.jpg" class="cake-img w-full h-56 object-cover group-hover:hidden transition duration-300">
+  <video class="cake-video w-full h-56 object-cover hidden group-hover:block" muted loop preload="metadata">
+    <source src="image/cupcake.MOV" type="video/mp4">
+  </video>
+  <div class="p-4 bg-purple-50">
+    <h3 class="text-lg font-bold text-purple-700">Cupcakes</h3>
+  </div>
+</div>
+
+<!-- Flower Cake -->
+<div class="cake-item bg-white rounded-xl shadow-lg overflow-hidden cursor-pointer group hover:shadow-xl transition"
+     data-title="Flower Cake"
+     data-images="image/flower1.jpg,image/flower2.jpg,image/flower3.jpg"
+     data-video="image/flower.MOV">
+  <img src="image/flower1.jpg" class="cake-img w-full h-56 object-cover group-hover:hidden transition duration-300">
+  <video class="cake-video w-full h-56 object-cover hidden group-hover:block" muted loop preload="metadata">
+    <source src="image/flower.MOV" type="video/mp4">
+  </video>
+  <div class="p-4 bg-purple-50">
+    <h3 class="text-lg font-bold text-purple-700">Flower Cake</h3>
+  </div>
+</div>
+
+<!-- Flower Tub Cake -->
+<div class="cake-item bg-white rounded-xl shadow-lg overflow-hidden cursor-pointer group hover:shadow-xl transition"
+     data-title="Flower Tub Cake"
+     data-images="image/flower-tub1.jpg,image/flower-tub2.jpg,image/flower-tub3.jpg,image/flower-tub4.jpg"
+     data-video="image/flower-tub.MOV">
+  <img src="image/flower-tub1.jpg" class="cake-img w-full h-56 object-cover group-hover:hidden transition duration-300">
+  <video class="cake-video w-full h-56 object-cover hidden group-hover:block" muted loop preload="metadata">
+    <source src="image/flower-tub.MOV" type="video/mp4">
+  </video>
+  <div class="p-4 bg-pink-50">
+    <h3 class="text-lg font-bold text-pink-700">Flower Tub Cake</h3>
+  </div>
+</div>
+
+
+    </div>
+  </section>
+
+
+  <!-- Menu & Pricing Section -->
+  <section id="menu-section" class="p-8 bg-white">
+    <h2 class="text-3xl font-bold text-center mb-6 text-pink-700">Menu & Pricing</h2>
+    <div class="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6">
+      <!-- Example Cake Pricing Item -->
+      <div class="bg-pink-50 rounded-xl shadow-lg p-4 flex flex-col items-center">
+        <h3 class="text-xl font-bold text-pink-700">Red Velvet Cake</h3>
+        <p class="text-gray-700 mt-2">1 Pound / 450g</p>
+        <p class="text-pink-700 font-bold mt-1">$20</p>
+      </div>
+      <div class="bg-pink-50 rounded-xl shadow-lg p-4 flex flex-col items-center">
+        <h3 class="text-xl font-bold text-pink-700">Chocolate Truffle Cake</h3>
+        <p class="text-gray-700 mt-2">1 Pound / 450g</p>
+        <p class="text-pink-700 font-bold mt-1">$25</p>
+      </div>
+      <div class="bg-pink-50 rounded-xl shadow-lg p-4 flex flex-col items-center">
+        <h3 class="text-xl font-bold text-pink-700">Blueberry Cheesecake</h3>
+        <p class="text-gray-700 mt-2">1 Pound / 450g</p>
+        <p class="text-pink-700 font-bold mt-1">$22</p>
+      </div>
+      <!-- Add more cakes as needed -->
     </div>
   </section>
 
   <!-- Modal Lightbox -->
   <div id="modal" class="fixed inset-0 bg-black/80 hidden items-center justify-center z-50 p-4 overflow-auto">
     <div class="bg-white rounded-xl max-w-3xl w-full p-6 relative">
-      <button id="modal-close" class="absolute top-2 right-2 text-gray-600 hover:text-gray-900 font-bold text-xl">&times;</button>
+      <!-- Close Button -->
+      <button id="modal-close" class="absolute top-2 right-2 text-gray-600 hover:text-gray-900 font-bold text-2xl">&times;</button>
       <h3 id="modal-title" class="text-2xl font-bold mb-4 text-pink-700"></h3>
       <div id="modal-gallery" class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4"></div>
-      <video id="modal-video" class="w-full rounded-xl" muted loop></video>
+      <video id="modal-video" class="w-full rounded-xl" muted loop controls></video>
     </div>
   </div>
 
