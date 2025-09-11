@@ -1,12 +1,16 @@
 {
   "name": "cake-website",
   "version": "1.0.0",
-  "scripts": {
-    "build": "tailwindcss -i ./src/input.css -o ./dist/output.css",
-    "dev": "tailwindcss -i ./src/input.css -o ./dist/output.css --watch"
-  },
+"scripts": {
+  "dev": "tailwindcss -i ./src/input.css -o ./dist/output.css --watch",
+  "serve": "live-server ./dist --host=127.0.0.1 --port=8080 --no-browser",
+  "start": "concurrently \"npm:dev\" \"npm:serve\""
+}
+,
   "devDependencies": {
     "autoprefixer": "^10.4.21",
+    "concurrently": "^9.2.1",
+    "live-server": "^1.2.2",
     "postcss": "^8.5.6",
     "tailwindcss": "^3.4.17"
   },
