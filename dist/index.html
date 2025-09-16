@@ -560,15 +560,15 @@
 <!-- Contact Section -->
 <section id="contact" class="py-20 bg-purple-50 text-center">
   <h2 class="text-3xl font-semibold mb-6 text-purple-700">Contact Me / Order Form</h2>
-  <form>
-    <input type="text" placeholder="Your Name" required>
-    <input type="text" placeholder="Cake Flavor" required>
-    <input type="text" placeholder="Cake Shape / Type" required>
-    <input type="text" placeholder="Weight (kg)" required>
-    <textarea placeholder="Additional Notes" rows="3"></textarea>
+  <form id="contact-form">
+    <input type="text" name="Name" placeholder="Your Name" required>
+    <input type="email" name="Email" placeholder="Your Email" required>
+    <textarea name="Message" placeholder="Message / Order Details" rows="3"></textarea>
     <button type="submit">Submit</button>
   </form>
+  <p id="form-status" class="mt-4 text-green-700 font-bold"></p>
 </section>
+
 
 <!-- Footer -->
 <footer class="bg-gradient-to-r from-pink-100 via-purple-100 to-blue-100 py-6 text-center">
@@ -700,6 +700,42 @@ customDiv.innerHTML = `<h3 class="text-xl font-bold text-pink-700">Customised Ca
                        <input type="text" placeholder="Pound / kg" class="border rounded px-2 py-1 mt-2 w-32">
                        <input type="text" placeholder="Price $" class="border rounded px-2 py-1 mt-2 w-32">`;
 menuList.appendChild(customDiv);
+
+
+// Google Apps Script Web App URL
+const form = document.getElementById("contact-form");
+const status = document.getElementById("form-status");
+
+form.addEventListener("submit", e => {
+  e.preventDefault();
+
+  const data = {
+    Name: form.Name.value,
+    Email: form.Email.value,
+    Message: form.Message.value
+  };
+
+  fetch("https://script.google.com/macros/s/AKfycbwXkJ01RISM_Tckz1YDv4l8FwKXPPqcnpgEr-9FWlJ5nqzJxoc8W7IfeAT1W0pQknv9/exec", {
+    method: "POST",
+    body: JSON.stringify(data),
+    headers: { "Content-Type": "application/json" }
+  })
+  .then(res => res.json()) // parse JSON from Apps Script
+  .then(res => {
+    if(res.status === "success"){
+      status.textContent = res.message;
+      form.reset();
+    } else {
+      status.textContent = "Error: " + res.message;
+    }
+  })
+  .catch(err => {
+    status.textContent = "Error submitting form";
+    console.log(err);
+  });
+});
+
+
 </script>
 
 </body>
